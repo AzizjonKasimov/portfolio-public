@@ -6,9 +6,11 @@ letters, bios, and portfolio copy without re-deriving the facts each time.
 
 The repo exists in two versions: the private original, and a
 [public copy](https://github.com/AzizjonKasimov/portfolio-public) that leaves out the job-search
-data, contact details, and other private files and lines. In the public copy, the CSV
-trackers and the notes in `job-search/runs/` and `job-search/audits/` are made-up examples, and
-[agent-instructions/](agent-instructions/README.md) holds the instructions the AI agents follow.
+data, contact details, and other private files and lines.
+[public-mirror](https://github.com/AzizjonKasimov/public-mirror) builds that copy. In the public
+copy, the CSV trackers and the notes in `job-search/runs/` and `job-search/audits/` are made-up
+examples, and [agent-instructions/](agent-instructions/README.md) holds the instructions the AI
+agents follow. The public copy is released under the MIT license.
 
 ## Structure
 

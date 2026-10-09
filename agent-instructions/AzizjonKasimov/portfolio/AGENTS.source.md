@@ -47,7 +47,8 @@ This file contains project-specific agent instructions for the portfolio repo.
 
 - This repo stays private and holds everything; keep working in it as usual. A public copy,
   https://github.com/AzizjonKasimov/portfolio-public, is built from its committed files by
-  public-mirror (`E:\PersonalProjects\public-mirror`), and
+  public-mirror (https://github.com/AzizjonKasimov/public-mirror, cloned at
+  `E:\PersonalProjects\public-mirror`), and
   `.public-mirror.toml` decides what the copy holds: which files are public, and which private
   names are rewritten (G-Man data sources and partners, colleagues, the Recs customer plant).
 - Text item files in the existing folders (`experience/`, `case-studies/`, `projects/`,

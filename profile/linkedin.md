@@ -11,7 +11,8 @@ The live LinkedIn profile, the decisions behind it, and notes for editing it. Ev
 verified on 2026-09-25, when the stand-out rewrite went live, except the changes made and checked
 on 2026-10-05: the Open to Work preferences, the Recs intern title, the About's closing line, the
 meetup count (13) in the About and Volunteering, the two new Volunteering entries, and the
-education field of study. The Android-apps project text was changed and checked on 2026-10-09. The two earlier audits (2026-06-23 and 2026-09-25) were folded into
+education field of study. The Android-apps project text and the Recs Innovation media were changed
+and checked on 2026-10-09. The two earlier audits (2026-06-23 and 2026-09-25) were folded into
 this file on 2026-10-05 and are in git history under `profile/audits/`.
 
 ## Decisions (do not reopen)
@@ -124,6 +125,22 @@ Data Science Intern:
 - Added 24 hourly thresholds instead of one global threshold (+10% recall) and anomaly-filtered training data (+30% precision, +20% recall).
 - Built the PyTorch/pandas pipeline and the prediction-vs-actual visualizations the team used to iterate.
 ```
+
+### Recs Innovation media
+
+Until 2026-10-09 the five Recs screenshots on LinkedIn were the uncovered originals, which name
+the customer plant. A privacy audit found them that day, and they were replaced with the
+`-covered` copies from `experience/media/recs-innovation/` (what each one shows is in
+`experience/recs-innovation.md`). The Data Science Intern role has no media.
+
+- AI Team Lead, in order: `forecast-bars-covered.jpg`, `forecast-week-covered.jpg`, and
+  `forecast-page-covered.jpg`, each titled "Power generation prediction system", then the Solar
+  Today article link.
+- AI Engineer, in order: `anomaly-detected-covered.png` ("Detected anomalous points") and
+  `anomaly-none-covered.png` ("Continuous monitoring. No anomalies detected.").
+- The titles and descriptions were kept, with two typos fixed ("the amount of power", "is the
+  average error rate"). The article card's description now spells Recs Innovation; it said "Rex
+  Innovation" before.
 
 ### Volunteering
 

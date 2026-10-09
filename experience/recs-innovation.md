@@ -129,7 +129,8 @@ browser, so some labels read oddly ("Today's development status" for 오늘의 �
 The screens name the customer plant in the header and subtitle, and the home screen also shows
 the plant's town and its SMP and REC sales. Each screenshot on the website has
 a `-covered` copy (same format as the original) with those covered by slate boxes, and the website's
-images are made from the covered copies.
+images are made from the covered copies. LinkedIn has shown the covered copies since 2026-10-09;
+before that it showed the uncovered originals (`profile/linkedin.md`).
 
 ## LinkedIn Skill Associations
 
