@@ -10,7 +10,8 @@ data, contact details, and other private files and lines.
 [public-mirror](https://github.com/AzizjonKasimov/public-mirror) builds that copy. In the public
 copy, the CSV trackers and the notes in `job-search/runs/` and `job-search/audits/` are made-up
 examples, and [agent-instructions/](agent-instructions/README.md) holds the instructions the AI
-agents follow. The public copy is released under the MIT license.
+agents follow. In the public copy, the career texts and scans stay all rights reserved, and
+everything else is under the MIT license; its LICENSE file lists which is which.
 
 ## Structure
 

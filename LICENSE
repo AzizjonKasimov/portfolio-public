@@ -1,4 +1,19 @@
-MIT License
+This repository holds two kinds of material, under different terms.
+
+PERSONAL CONTENT: ALL RIGHTS RESERVED
+
+Copyright (c) 2026 Azizjon Kasimov. All rights reserved.
+
+The career texts and images are personal content: everything in profile/, experience/,
+case-studies/, projects/, community/, education/, certifications/, and awards/, the LinkedIn
+banner image in assets/linkedin/generated/, and every certificate scan, diploma scan, photo, and
+screenshot in this repository. You may read it and link to it, but you may not copy, modify, or
+republish it without permission.
+
+EVERYTHING ELSE: MIT LICENSE
+
+Everything else in this repository (the scripts, templates, example trackers and notes,
+documentation, and agent instructions) is released under the MIT License:
 
 Copyright (c) 2026 Azizjon Kasimov
 
