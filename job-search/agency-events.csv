@@ -1,0 +1,5 @@
+"event_id","agency_id","event_date","event_type","status_after","source","actor","event_summary","evidence_path","created_at"
+"20260920-adventure-works-tech-recruiting-evt-found","20260920-adventure-works-tech-recruiting","2026-09-20","found","found","Web search","agent","Found a recruiter that places AI engineers in Germany.","","2026-09-20"
+"20260920-adventure-works-tech-recruiting-evt-registered","20260920-adventure-works-tech-recruiting","2026-09-20","user_registration_completed","on_hold","Azizjon's update in chat","user","Azizjon created the account himself.","","2026-09-20"
+"20260920-adventure-works-tech-recruiting-evt-cv","20260920-adventure-works-tech-recruiting","2026-09-20","cv_uploaded_verified","profile_submitted","Agency profile page","agent","Uploaded the MLOps resume and checked that the profile shows it.","","2026-09-20"
+"20260925-wide-world-talent-platform-evt-found","20260925-wide-world-talent-platform","2026-09-25","found","needs_user_registration","Web search","agent","Found a free talent platform for international hires; registration needs Azizjon.","","2026-09-25"
