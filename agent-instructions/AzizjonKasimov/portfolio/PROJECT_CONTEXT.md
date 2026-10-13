@@ -29,12 +29,14 @@ reusable resumes, and the job-search trackers.
   `education/`, `awards/`, `certifications/`. The repo's root `README.md` indexes every file.
 - **LinkedIn:** `profile/linkedin.md` holds the live profile text, the standing decisions, the
   editing notes for agents, and the audit checklist.
+- **Profile photos:** before choosing, changing, or uploading one, read `notes/profile-photos.md`
+  beside this file (which versions exist, where they are, and which one each place uses).
 - **Job search:** `job-search/STRATEGY.md` (direction and constraints), `job-search/LESSONS.md`
   (employer rules and platform quirks), and `job-search/README.md` (trackers, folders, workflow,
   schema, and scripts).
 - **Resumes:** `resumes/README.md` (which resume to send for which posting, and how to build one),
   `resumes/resume-index.csv`, and the shared builder and checker in `resumes/tools/`.
-- **Portfolio website:** https://azizjonkasimov.github.io (Korean version at `/ko/`), built from
+- **Portfolio website:** https://azizjonkasimov.github.io (in six languages; Korean at `/ko/`), built from
   `E:\PersonalProjects\resume_website\resume_website_frontend`.
 
 ## Key facts and guardrails
@@ -64,14 +66,16 @@ reusable resumes, and the job-search trackers.
   text written in Azizjon's voice uses masculine forms (я руководил, открыт к предложениям), as
   chosen on 2026-09-25 for the Russian website.
 - **Portfolio website:** rebuilt on 2026-09-23 as a static site, and every current resume links
-  it. Its six case studies are the public technical proof; link the one that matches what a
+  it. Its seven case studies are the public technical proof; link the one that matches what a
   posting values: semantic search, AWS data pipeline, solar MLOps, LangGraph agent, the expense
   tracker (`/work/expense-tracker/`: AI inside a product used daily, where code owns the numbers,
-  AI labels, and a human checks every row; good for "project you are most proud of" fields), and
+  AI labels, and a human checks every row; good for "project you are most proud of" fields),
   Network App (`/work/network-app/`: an AI agent with tool calling, safety rules, and a
-  report-and-fix evaluation loop; good for AI-agent roles).
-- A LinkedIn-to-repo import on 2026-06-23 brought the LinkedIn facts into the item files; LinkedIn
-  analytics, recommendations, ads, and "people you may know" suggestions were deliberately not kept.
+  report-and-fix evaluation loop; good for AI-agent roles), and the body physics engine
+  (`/work/body-physics/`, since 2026-10-11: supervising coding agents in a field Azizjon does not
+  know, with tests grounded in published research and a public, playable result; good for
+  AI-native or agentic-engineering roles).
+- The item files hold the LinkedIn facts; LinkedIn analytics, recommendations, ads, and "people you may know" suggestions are deliberately not kept.
 
 ## Job-search context
 
@@ -90,8 +94,7 @@ Job posting fit rules:
 - Azizjon is open to junior roles when they are still technical, visa/language-compatible, and
   credible stepping stones; do not filter out junior or 0-3 year roles just because of seniority.
   Junior roles at reputable companies, strong AI teams, foreigner-friendly employers, or companies
-  with visible technical credibility can be good targets, because some past employers carry little
-  external credibility and some of the strongest work is private.
+  with visible technical credibility can be good targets.
 - Medium priority: global/overseas business roles only when they are still technical or
   technical-adjacent, use the technical background or language strengths, and do not require
   business-fluent Korean.

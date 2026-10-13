@@ -6,8 +6,7 @@ platform listing is never applied to twice.
 
 ## Start here
 
-- `STRATEGY.md`: the current direction (Europe first, starting with Germany, since 2026-10-05),
-  the constraints, and the default resumes.
+- `STRATEGY.md`: the current direction, the constraints, and the default resumes.
 - `LESSONS.md`: employer re-apply rules, platform quirks, and screening patterns from past runs.
 - `.\job-search\audit-applications.ps1`: where things stand, including applications waiting on a
   reply and leads never acted on.

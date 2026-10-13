@@ -200,14 +200,16 @@ A dependency-free Python script on a cron job that warns before rain or bad air:
 ```
 
 Five Android apps built entirely with coding agents, plus a private AI gateway (Apr 2026 - present;
-no skills attached yet; form `1478639419`). Since then the Network App saves AI changes right away
-with one Undo per reply instead of asking first; see `projects/network-app.md`. Until 2026-10-09
-the gateway sentence said "A small TypeScript gateway".
+no skills attached yet; form `1478639419`). Two sentences changed on 2026-10-09. The gateway
+sentence said "A small TypeScript gateway". The sentence before it said every AI-generated write
+is schema-validated and confirmed by the user before it is saved, but Network App has saved at
+once with one Undo per reply since 2026-09-14 (`projects/network-app.md`), and Expenses sends a
+plain prompt with no JSON Schema (`projects/expense-tracker.md`).
 
 ```text
 Expenses, Notes, OneShot Reminder, Network App, and Life Simulator: Kotlin and Jetpack Compose apps whose code was written by Claude Code and Codex under a guardrail system I maintain (shared rules, per-project context files, mandatory end-to-end checks, no destructive commands without approval).
 
-Every AI-generated write is schema-validated and confirmed by the user before it is saved; if the model's answer is invalid, nothing is saved. A small gateway on my VPS gives the apps one Claude-backed endpoint with JSON-Schema-constrained output. Each app updates itself from a GitHub Releases channel.
+Three of the apps use AI, and each checks the model's answer before using it. Expenses and OneShot Reminder ask me before saving; Network App saves at once with one-tap Undo, and deletes and merges wait for my tap. A small gateway on my VPS gives the apps one Claude-backed endpoint with JSON-Schema-constrained output. Each app updates itself from a GitHub Releases channel.
 
 Public source: github.com/AzizjonKasimov (network-app, oneshot-reminder, note-taking-app, life_simulator_app).
 ```
@@ -218,8 +220,7 @@ Public source: github.com/AzizjonKasimov (network-app, oneshot-reminder, note-ta
 - Attach skills to the three new projects. Do not tag Kotlin: the AI tools wrote the Android code.
 - Move the three IBM basics (Sep 2023) below the Neo4j LLM certificates (2025), or delete "What is
   Data Science?".
-- Update the portfolio project text to six case studies, and the Android-apps text to the Network
-  App's Undo design.
+- Update the portfolio project text to six case studies.
 - The June skills snapshot (`profile/skills.md`) listed Java and Chatbot Development. Check
   whether they are still on the profile and remove them: Java was one course, and the chatbot was
   retired on 2026-09-23.

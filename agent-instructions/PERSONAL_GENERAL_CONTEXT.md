@@ -8,7 +8,7 @@ This file captures durable background for the user's personal projects in this c
 
 - These projects are owned directly by the user and are separate from company production/R&D work.
 - Personal projects may include productivity tools, experiments, bots, or small automation systems built for everyday use.
-- The user works on Windows, and coding agents (Claude Code and Codex) run natively on Windows too. WSL2 is installed but agents no longer run there. Some services, such as the AI gateway and the expense tracker's legacy bot, run on a headless Linux VPS.
+- The user works on Windows, and coding agents (Claude Code and Codex) run natively on Windows too. WSL2 is installed, but agents do not run there. A headless Linux VPS runs only the self-hosted AI gateway (`AzizjonKasimov/ai-gateway`).
 
 ## Common Priorities
 

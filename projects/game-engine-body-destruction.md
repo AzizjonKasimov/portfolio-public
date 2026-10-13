@@ -8,8 +8,9 @@ ai_written_code: [Rust, C++] # built by directing coding agents; C++ until the p
 tags: [personal-project, game-engine, physics, simulation, agentic-coding, telemetry]
 repo: https://github.com/AzizjonKasimov/realistic-human-body-deformation-physics
 website: https://azizjonkasimov.github.io/realistic-human-body-deformation-physics/
+case_study: https://azizjonkasimov.github.io/work/body-physics/ # on the portfolio site since 2026-10-11
 demo_video: https://www.youtube.com/watch?v=YSuN8D9t4ZI # the October 2026 update; the June video is in the Proof Note
-sources: ["LinkedIn Activity section visible on profile, viewed 2026-06-23", "YouTube demo video description, viewed 2026-09-26", "Repository history and GitHub language stats, checked 2026-09-26", "Update video transcript and the project's strike scenarios, 2026-10-06"]
+sources: ["LinkedIn Activity section visible on profile, viewed 2026-06-23", "YouTube demo video description, viewed 2026-09-26", "Repository history and GitHub language stats, checked 2026-09-26", "Update video transcript and the project's strike scenarios, 2026-10-06", "Repository, its verify run, and its project notes, checked 2026-10-11"]
 ---
 
 # Game Engine with Realistic Body Destruction Physics
@@ -49,6 +50,42 @@ From the update video (published 2026-10-06) and the repository:
 - Limitation stated in the video: the injuries are still not close to real life. Next step named
   there: build on an existing open-source physics engine.
 
+## Injuries Checked Against Research (2026-10-09)
+
+From the repository, checked on 2026-10-11 (50 commits; all 35 October commits name Claude Opus
+5.5 as co-author):
+
+- Injuries follow published research: each strike scenario lists the real-life outcome, how often
+  it happens, and its source (biomechanics, forensic, or medical studies, in the repo's
+  `docs/INJURY_REFERENCE.md`). The figure stands for a 1.75 m adult, with a 4.5 kg sledgehammer
+  head and a 0.8 kg bat. A rule for every play is that a knife never breaks a long bone, and the
+  slow-push scenario checks that a slow push never breaks bone.
+- 27 strike scenarios (`strike_scenarios --list` on 2026-10-11) run after every change, and a
+  sweep plays each one 45 times (the swing moved along and across it, and bones at 0.8, 1.0, and
+  1.25 of their strength), so outcomes that vary in real life are judged by how often they happen.
+  All 27 were in band on 2026-10-11. Two checks are known gaps: a bat brought down on the
+  shoulder never breaks the collarbone (in real life it usually does), and a hard bat always
+  breaks the shin (it should only sometimes).
+- The browser build simulates bit for bit like the Windows build. A one-bruise difference in one
+  scenario was traced to the platform `atan2` function, which rounded differently in each build,
+  and fixed by using the `libm` crate; a script compares both builds on every scenario.
+- Techniques are studied and rebuilt from open source and papers, with the source credited in the
+  code: knife cuts that open (Rapier's soft-body cuts), blood that runs down the skin
+  (Overgrowth's surface blood), and bones that break where they bend most (NVIDIA Blast's stress
+  solver). Moving the whole simulation onto Rapier was tried on a branch: it ran about 40% faster
+  but met 15 of 20 scenarios against the engine's 20, so Azizjon turned it down.
+- Sound is synthesized from what the simulation does; nothing is a recording.
+- The app saves screenshots and film strips itself (capture mode), so Azizjon judges visual
+  changes from pictures rather than numbers he cannot judge.
+- The simulation steps 60 times a second on the visitor's device; the site has no server.
+- 2026-10-11: the game's start screen gained an About section and an in-game About button
+  (`I`) that link to the case study, the update video, and the source code.
+- 2026-10-11 (commit 58301c7): injuries are drawn as they really look, shown fully but never
+  exaggerated. Blood comes only out of wounds and is drawn at its real size; a blow reddens the
+  skin at once and its bruise develops over about 17 minutes, as real bruises do (Scafide et al.
+  2020; Randeberg et al. 2007); broken bone stays in the body, a fourth rule for every play.
+  Still 27 strike scenarios.
+
 ## Proof Note
 
 Confirmed on 2026-09-26 from the YouTube demo's description:
@@ -71,4 +108,11 @@ Confirmed on 2026-09-26 from the YouTube demo's description:
   The update video's materials are in the private `video_tools` repo
   (`videos/2026-10-06-physics-update/`).
 
-The portfolio website links the channel but does not feature this project.
+Since 2026-10-11 the portfolio website features this project, at the user's request: a case
+study at `/work/body-physics/` ("A body physics engine, checked against injury research", in all
+six languages) and a third card in How I build. It describes the project as a realistic injury
+simulation built by directing AI coding agents, names no programming language, and puts a content
+note on the Play button. Its pictures show the body before any blow and one bruise, added at the
+user's request once bruises developed like real ones: a moderate sledgehammer swing on the upper
+arm (the `hammer_moderate_swing` scenario's blow, with the hand moved away afterwards; no bone
+breaks), with the red mark right after the blow beside the bruise 17 simulated minutes later.

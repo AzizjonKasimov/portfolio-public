@@ -88,7 +88,7 @@ everything else is under the MIT license; its LICENSE file lists which is which.
 - [Portfolio Website](projects/portfolio-website.md) — static site with six case studies at azizjonkasimov.github.io (the former LLM chatbot was retired on 2026-09-23)
 - [Expense Tracking App](projects/expense-tracker.md) — Android app in daily use (started as a Telegram bot), AI categorization
 - [Network App](projects/network-app.md) — AI agent with tool calling for a personal network, public source
-- [Game Engine with Realistic Body Destruction Physics](projects/game-engine-body-destruction.md) — agent-built prototype (C++, ported to Rust), public repo, browser version, and YouTube videos (June and October 2026)
+- [Game Engine with Realistic Body Destruction Physics](projects/game-engine-body-destruction.md) — agent-built prototype (C++, ported to Rust), public repo, browser version, YouTube videos (June and October 2026), injuries checked against research, and a portfolio case study since 2026-10-11
 - [Weather & Air Quality Alert App](projects/weather-alert.md) — multi-city, bilingual, in use by Azizjon + family
 - [Diabetic Retinopathy Detection on Human Retina Images](projects/diabetic-retinopathy-detection.md) — Upwork-associated medical CV project
 - [Time-Series Prediction Using Reinforcement Learning](projects/rl-time-series.md)

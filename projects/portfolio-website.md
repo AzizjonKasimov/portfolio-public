@@ -22,6 +22,9 @@ GitHub Pages, deployed by GitHub Actions) with a homepage and four case studies:
 search, the serverless AWS data pipeline, solar forecasting and anomaly-detection MLOps, and the
 LangGraph catalog-data agent. On 2026-09-29 two personal-app case studies were added: the
 Expenses AI expense tracker (`/work/expense-tracker/`) and Network App (`/work/network-app/`).
+On 2026-10-11 a third personal-project case study followed: the body physics engine
+(`/work/body-physics/`, `projects/game-engine-body-destruction.md`), whose game page links back
+to it.
 The site may be listed in resumes and applications next to
 LinkedIn and GitHub; every current resume links it. LinkedIn Featured links to the homepage and the
 semantic-search case study (the solar-MLOps link was removed on 2026-09-25), and the LinkedIn
