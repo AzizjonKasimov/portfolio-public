@@ -58,13 +58,14 @@ resumes use for AI-native, AI-assisted-SDLC, and agentic-engineering roles.
 
 ## Android apps (Kotlin, Jetpack Compose, Room)
 
-Five apps, each with an in-app updater fed by a GitHub Releases channel: Expenses (private
-source), Network App, OneShot Reminder, Notes, and Life Simulator (public source).
+Five apps, each with an in-app updater fed by a GitHub Releases channel: Sorted (the expense
+tracker, called Expenses until 2026-10-22; private source), Network App, OneShot Reminder, Notes,
+and Life Simulator (public source).
 
-- Three of the five apps use AI (Expenses, Network App, OneShot Reminder); Notes and Life
+- Three of the five apps use AI (Sorted, Network App, OneShot Reminder); Notes and Life
   Simulator do not. Each AI app validates the answer before using it.
-- Expenses and OneShot Reminder ask the user before saving AI output. OneShot Reminder never
-  falls back to local parsing; a failed or invalid AI response leaves the draft unsaved. Expenses
+- Sorted and OneShot Reminder ask the user before saving AI output. OneShot Reminder never
+  falls back to local parsing; a failed or invalid AI response leaves the draft unsaved. Sorted
   falls back to local rules with a blocking alert.
 - Since 2026-09-14 Network App's assistant is an agent that saves adds and edits immediately,
   with one Undo per reply; only deletes and merges wait for a tap. See `network-app.md`.

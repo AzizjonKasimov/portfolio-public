@@ -27,6 +27,9 @@ platform listing is never applied to twice.
 | `templates/` | Starting points for an application note, a pre-submission snapshot, and an agency note. |
 | `reference/` | Visa and language answers, the international target countries, and the portfolio proof plan. |
 | `check-application.ps1`, `audit-applications.ps1`, `validate-applications.ps1` | Read-only helpers (see below). |
+| `wanted-posting.py`, `wanted_api.py` | Read-only Wanted helper: a posting ID in, a lead-note snapshot out (see Wanted Helpers). |
+| `wanted-discover.py` | Read-only Wanted search: finds open roles, ranks them, and marks the ones already tracked (see Wanted Helpers). |
+| `wanted-dashboard.js`, `wanted-dashboard-compare.py` | Read-only Wanted outcome check: the first reads every application's status in Chrome, the second compares them with `applications.csv` (see Wanted Helpers). |
 
 ## Required Workflow
 
@@ -214,6 +217,126 @@ Import-Csv .\job-search\applications.csv |
   Sort-Object date_applied |
   Format-Table date_applied, platform, company, role_title, platform_posting_id
 ```
+
+## Wanted Helpers
+
+Before writing a lead note for a Wanted posting or proposal, print its snapshot instead of
+reading the posting, its API, and the company page by hand:
+
+```powershell
+uv run job-search/wanted-posting.py 393698
+uv run job-search/wanted-posting.py https://www.wanted.co.kr/wd/382306 393698
+```
+
+It prints Markdown for `applications/<application_id>.md`, to summarize there in English:
+
+- **Company:** founding year, address, website, people (국민연금 가입 사원수), employment
+  insurance (고용보험 가입 사원수), average salary, this year's hires' average salary (올해
+  입사자 평균연봉), and revenue (매출액), each with its source and date, then every open role
+  on Wanted.
+- **Posting Snapshot:** title, status, deadline, date posted, the experience range in Wanted's
+  field beside the one in the title (they can differ: wd/393698's title says 5~8년, its field
+  8-12년), location, employment type, job category, skill tags, Wanted's visa and language
+  fields, the lines that mention visas or languages, and the posting's sections word for word
+  (Intro, 주요업무, 자격요건, 우대사항, 혜택 및 복지, 채용 전형).
+
+It reads `/api/v4/jobs/<id>`, the posting page `/wd/<id>` (the API lacks 채용 전형),
+`/api/v4/companies/<id>`, and the calls behind the company page:
+`/api/krs/v1/company/<id>/info-for-wanted`, then `summary-for-wanted` and
+`hired-average-salaries` by the company's registration hash, and
+`/api/chaos/companies/v1/<id>/jobs`. It is read-only: GET requests only, a 0.4-second pause
+before each (`--delay`), no login or cookies, and nothing written to disk. `wanted_api.py`
+holds these requests so other Wanted scripts can share them.
+
+### Finding open roles
+
+Before a Wanted application run, list the open roles instead of searching the site by hand:
+
+```powershell
+uv run job-search/wanted-discover.py
+uv run job-search/wanted-discover.py --query LLM --query "AI 에이전트" --top 60
+```
+
+It runs about 30 built-in searches (LLM, RAG, MLOps, AI 에이전트, 데이터 엔지니어, 신입 AI, 주니어
+AI, 영어 가능, 외국인, and others) through `/api/chaos/search/v1/position`, keeps postings in
+Wanted's 개발 category, drops titles from other job families (frontend, mobile, embedded, QA,
+sales), and reads each posting through `/api/v4/jobs/<id>`. Each row gets:
+
+- **rank:** profile terms in the title and the work sections (LLM, RAG, MLOps, agents, vector
+  search, AWS, pipelines, forecasting, and more), plus points for language signals, minus points
+  for a fluent-Korean requirement or 4+ years asked, and minus 100 for a tracker match;
+- **flags:** `foreign-lang-pref` (the posting's 기타사항: 외국어 능통자 우대; foreign-language
+  speakers preferred, not visa support), `visa-listed`, `english-pref`, `english-text`,
+  `foreigner-text`, `KOREAN-RISK`, and `military` (전문연구요원 or 산업기능요원 postings);
+- **tracker:** the status of any `applications.csv` row with the same Wanted posting ID or the
+  same company on any platform. Company names match when equal, or when one contains the
+  other and both have at least four characters, so 드랩 never matches 원티드랩.
+
+It prints the top of the ranking and writes every row to `%TEMP%\wanted-discover.csv`
+(`--out`), and caches each posting's JSON in `%TEMP%\wanted-discover-cache` (`--cache`), so a
+second run reads only the searches again. A full run reads about 330 postings and takes several
+minutes at the default 0.4-second pause (`--delay`). It is read-only: GET requests through
+`wanted_api.py`, no login or cookies, and nothing written to the repo. Read every shortlisted
+posting before applying; the rank only orders the reading.
+
+### Reading a proposal
+
+A 면접 제안 or 지원 제안 shows only to the logged-in account. Read it in Chrome with the
+JavaScript tool, in a wanted.co.kr tab of your own, and never click 수락 or 거절 on the
+proposal page: accepting happens at once (`LESSONS.md`).
+
+```js
+// Both kinds: company.name, position.position, offer_type (INTERVIEW = 면접 제안,
+// APPLY = 지원 제안), expired_time (answer by), histories (newest first: OFFER,
+// USER_ACCEPT, USER_APPLY, ...).
+const list = await (await fetch('/api/chaos/proposal/v1/history?type=OFFER&limit=20')).json();
+// One proposal, by its newest history id: proposal.job_id (the posting ID), message, rank,
+// min_salary and max_salary (만원), salary_negotiable, stock_option, location,
+// created_time, expired_time; and reward.
+const one = (await (await fetch('/api/chaos/proposal/v1/history/' + list.data[0].histories[0].id)).json()).data;
+```
+
+Send only GET requests to these paths: the page's own PUT to `history/<id>` is the accept or
+decline. The JavaScript tool cuts its output at about 1,000 characters, so print the message
+in slices. Then run `wanted-posting.py` on `proposal.job_id`.
+
+### Checking outcomes against the tracker
+
+Wanted's 지원 현황 (`wanted.co.kr/status/applications/applied`) shows outcomes that never arrive
+by email: some employers reject only on Wanted, and Wanted closes applications that get no
+feedback within 30 days. On every outcome audit, compare it with `applications.csv` in two steps:
+
+1. In Chrome, in a wanted.co.kr tab of your own where the account is logged in, paste all of
+   `wanted-dashboard.js` into the extension's JavaScript tool. It reads the dashboard's list,
+   then each application's record, 0.6 seconds apart, in the background. Call
+   `wantedDashboard.progress()` until it says done, then print `wantedDashboard.part(1)`,
+   `part(2)`, and so on, and save every part, exactly as printed and in order, to
+   `%TEMP%\wanted-dashboard.txt`.
+2. Compare:
+
+```powershell
+uv run job-search/wanted-dashboard-compare.py
+uv run job-search/wanted-dashboard-compare.py $env:TEMP\wanted-dashboard.txt --table
+```
+
+It prints status mismatches, dashboard applications with no tracker row, Wanted rows with a
+`date_applied` that the dashboard lacks, Wanted rows missing `platform_posting_id` or
+`date_applied`, and applied dates that differ. Statuses are judged by each record's status code,
+which tells an employer rejection from Wanted's closure (both show as 불합격); the codes are in
+`LESSONS.md` (Wanted dashboard), and a code the script does not know yet is listed on its own.
+`--table` adds every application beside its tracker row, as a Markdown table for the audit note,
+and `--tracker` compares another copy of the tracker, such as one saved from git history. The
+script exits with 1 while anything is listed.
+
+Each line the snippet prints is one application: Wanted's application ID, the posting ID, the
+applied, opened, and decision times (KST), the dashboard's status, the record's status code, the
+company, and the role. The JavaScript tool cuts its output at 1,000 characters and blocks text
+that looks like `key=value`, so the parts stay under 900 characters, with `|` between fields, and
+each part carries a checksum: the compare script names any part that was cut or mistyped, so
+print that part again. Both steps are read-only. The snippet clicks nothing and sends GET
+requests only; it takes the account's `user_id` from the page without printing it, and never
+prints the name, email, or phone fields in Wanted's responses. The compare script writes
+nothing: fix the tracker by hand and run it again.
 
 ## Notes
 

@@ -1,6 +1,6 @@
 ---
 type: project
-title: Expense Tracking App
+title: Sorted (AI expense tracker)
 start: 2026-04
 end: present
 repo: https://github.com/AzizjonKasimov/expense-tracker-bot # private
@@ -11,13 +11,23 @@ status: in daily use (Android app since mid-2026; the Telegram Mini App was the 
 demo_video: https://www.youtube.com/watch?v=8pA2G70gYdI
 ---
 
-# Expense Tracking App
+# Sorted (AI expense tracker)
 
 **Personal project, in daily use since April 2026 | Android app since 2026-06-24; earlier a Telegram bot and Telegram Mini App on a Hetzner VPS**
 
 Started as a plain Telegram bot, evolved over ~50 commits into a Telegram Mini App with an
 AI-powered import pipeline. Sole user is Azizjon; his girlfriend interacts through split-expense
 notifications.
+
+## Name
+
+- Since 2026-10-22 the app is called Sorted (tagline "Your bank statement, sorted.") and has a new
+  icon. Until then it was called Expenses, which Azizjon found read like a placeholder.
+- Only what people see changed. The Android package name (`com.azizjon.expenses`) and the
+  repositories (`expense-tracking-app`, `expense-tracker-app-releases`, `expenses-demo`) keep the
+  old name, and the published YouTube videos were left as they were. Material made before the
+  rename can still show "Expenses", so where a reader may see both names, write "Sorted (formerly
+  Expenses)".
 
 ## Application positioning
 
@@ -33,8 +43,8 @@ notifications.
 - Public demo: the YouTube video "I Built an AI Expense Tracker That Splits Costs With My
   Girlfriend" (<https://www.youtube.com/watch?v=8pA2G70gYdI>, 12 minutes, published
   2026-09-17 on the channel `@azizjon_kasimov`). It walks through the Android app in demo mode,
-  so every transaction shown is sample data. The portfolio website links it from the Expenses
-  case study (<https://azizjonkasimov.github.io/work/expense-tracker/>, live since 2026-09-29).
+  so every transaction shown is sample data. The portfolio website links it from the app's case
+  study (<https://azizjonkasimov.github.io/work/expense-tracker/>, live since 2026-09-29).
 
 ## AI bank-statement import (human-in-the-loop)
 
@@ -75,7 +85,7 @@ hours a year", video attached), read during the 2026-09-25 LinkedIn audit. The s
 describe the earlier Telegram Mini App; this is the current state.
 
 - Timeline in his words: a Telegram bot built in two days, then the Mini App, then the Android
-  app "two and a half months later". The Android app is the "Expenses" app listed in
+  app "two and a half months later". The Android app is the app listed as Sorted in
   `ai-native-engineering-workflow.md` (private source; Kotlin, Jetpack Compose, Room, written by
   the coding agents).
 - Import: a Toss Bank statement as a password-protected Excel file goes into the Android app; AI

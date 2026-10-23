@@ -86,7 +86,7 @@ everything else is under the MIT license; its LICENSE file lists which is which.
 ### Projects (personal / academic)
 - [AI-Native Engineering Workflow](projects/ai-native-engineering-workflow.md) — agent guardrails across 19 projects, private AI gateway, five Android apps
 - [Portfolio Website](projects/portfolio-website.md) — static site with six case studies at azizjonkasimov.github.io (the former LLM chatbot was retired on 2026-09-23)
-- [Expense Tracking App](projects/expense-tracker.md) — Android app in daily use (started as a Telegram bot), AI categorization
+- [Sorted (AI expense tracker)](projects/expense-tracker.md) — Android app in daily use, formerly Expenses (started as a Telegram bot), AI categorization
 - [Network App](projects/network-app.md) — AI agent with tool calling for a personal network, public source
 - [Game Engine with Realistic Body Destruction Physics](projects/game-engine-body-destruction.md) — agent-built prototype (C++, ported to Rust), public repo, browser version, YouTube videos (June and October 2026), injuries checked against research, and a portfolio case study since 2026-10-11
 - [Weather & Air Quality Alert App](projects/weather-alert.md) — multi-city, bilingual, in use by Azizjon + family

@@ -12,8 +12,9 @@ verified on 2026-09-25, when the stand-out rewrite went live, except the changes
 on 2026-10-05: the Open to Work preferences, the Recs intern title, the About's closing line, the
 meetup count (13) in the About and Volunteering, the two new Volunteering entries, and the
 education field of study. The Android-apps project text and the Recs Innovation media were changed
-and checked on 2026-10-09. The two earlier audits (2026-06-23 and 2026-09-25) were folded into
-this file on 2026-10-05 and are in git history under `profile/audits/`.
+and checked on 2026-10-09, and the Android-apps text again on 2026-10-23 (the app's new name). The
+two earlier audits (2026-06-23 and 2026-09-25) were folded into this file on 2026-10-05 and are in
+git history under `profile/audits/`.
 
 ## Decisions (do not reopen)
 
@@ -203,13 +204,14 @@ Five Android apps built entirely with coding agents, plus a private AI gateway (
 no skills attached yet; form `1478639419`). Two sentences changed on 2026-10-09. The gateway
 sentence said "A small TypeScript gateway". The sentence before it said every AI-generated write
 is schema-validated and confirmed by the user before it is saved, but Network App has saved at
-once with one Undo per reply since 2026-09-14 (`projects/network-app.md`), and Expenses sends a
-plain prompt with no JSON Schema (`projects/expense-tracker.md`).
+once with one Undo per reply since 2026-09-14 (`projects/network-app.md`), and Sorted (then
+called Expenses) sends a plain prompt with no JSON Schema (`projects/expense-tracker.md`). On
+2026-10-23 the text's two mentions of Expenses became Sorted, the app's new name.
 
 ```text
-Expenses, Notes, OneShot Reminder, Network App, and Life Simulator: Kotlin and Jetpack Compose apps whose code was written by Claude Code and Codex under a guardrail system I maintain (shared rules, per-project context files, mandatory end-to-end checks, no destructive commands without approval).
+Sorted, Notes, OneShot Reminder, Network App, and Life Simulator: Kotlin and Jetpack Compose apps whose code was written by Claude Code and Codex under a guardrail system I maintain (shared rules, per-project context files, mandatory end-to-end checks, no destructive commands without approval).
 
-Three of the apps use AI, and each checks the model's answer before using it. Expenses and OneShot Reminder ask me before saving; Network App saves at once with one-tap Undo, and deletes and merges wait for my tap. A small gateway on my VPS gives the apps one Claude-backed endpoint with JSON-Schema-constrained output. Each app updates itself from a GitHub Releases channel.
+Three of the apps use AI, and each checks the model's answer before using it. Sorted and OneShot Reminder ask me before saving; Network App saves at once with one-tap Undo, and deletes and merges wait for my tap. A small gateway on my VPS gives the apps one Claude-backed endpoint with JSON-Schema-constrained output. Each app updates itself from a GitHub Releases channel.
 
 Public source: github.com/AzizjonKasimov (network-app, oneshot-reminder, note-taking-app, life_simulator_app).
 ```

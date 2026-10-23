@@ -20,8 +20,9 @@ sources: ["LinkedIn Projects section, viewed 2026-06-23", "Portfolio site rebuil
 Azizjon's public portfolio site. On 2026-09-23 it was rebuilt as a fast static site (Vite,
 GitHub Pages, deployed by GitHub Actions) with a homepage and four case studies: AI semantic
 search, the serverless AWS data pipeline, solar forecasting and anomaly-detection MLOps, and the
-LangGraph catalog-data agent. On 2026-09-29 two personal-app case studies were added: the
-Expenses AI expense tracker (`/work/expense-tracker/`) and Network App (`/work/network-app/`).
+LangGraph catalog-data agent. On 2026-09-29 two personal-app case studies were added: the AI
+expense tracker Sorted, then called Expenses (`/work/expense-tracker/`), and Network App
+(`/work/network-app/`).
 On 2026-10-11 a third personal-project case study followed: the body physics engine
 (`/work/body-physics/`, `projects/game-engine-body-destruction.md`), whose game page links back
 to it.

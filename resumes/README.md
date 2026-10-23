@@ -62,3 +62,6 @@ builder works in any folder.
 - The builder and checker enforce the format rules (one page, body text of at least 8.5 pt,
   embedded fonts, real links) and the fact rules (no "Rex", no G-Man "Present", no Java, Kotlin,
   or Rust skills, no "anomaly detection for a VPP", highest honors present).
+- The online resumes on Wanted, Saramin, and JobKorea are edited by hand, outside the builder.
+  Before applying through one, capture it and run `tools/check_resume_text.py` on it (steps in
+  `tools/README.md`).

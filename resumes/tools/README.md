@@ -36,10 +36,77 @@ Read-only check of one or more PDFs against the resume standards and fact rules.
 
 It fails a PDF that is longer than its page budget, lacks a text layer, has an unembedded font,
 uses body text under 8.5 pt or any text under 8.0 pt, or shows an email or profile address without
-a link. It also fails these fact errors: "Rex Innovation"; G-Man Auto Parts shown as "Present";
-Java, Kotlin, or Rust listed as a skill (Java was one course and the AI tools wrote the Kotlin and
-Rust); the Recs anomaly detection described as for or in a VPP; and a missing highest-honors line.
-Use `--no-honors` for archived packets made before 2026-09-25.
+a link. It also fails these fact errors, whose rules live in `resume_facts.py` and are shared with
+`check_resume_text.py`: "Rex Innovation"; G-Man Auto Parts shown as "Present" or 재직 중; Java,
+Kotlin, or Rust listed as a skill (Java was one course and the AI tools wrote the Kotlin and Rust);
+the Recs anomaly detection or its models described as for or in a VPP; and a missing
+highest-honors line. Use `--no-honors` for archived packets made before 2026-09-25.
+
+## `check_resume_text.py` and `capture_resume_text.js`
+
+Read-only check of an online platform resume (Wanted, Saramin, JobKorea) against the same fact
+rules. Those resumes are edited by hand in the browser, outside the builder, and they drifted twice
+with the same wrong facts, so check the platform's own copy before applying through it or
+accepting a Wanted interview proposal (which sends no file, only the online resume). Check it also after
+uploading a PDF to a platform, because the platform turns the PDF into its own resume: Wanted's
+conversion once turned "B.S., 2020-2024" into 대학원 / 석사 with 2020.01-2024.01. Read the
+editor's fields, not the platform's PDF export, which may leave fields out (Wanted's prints no
+degree level).
+
+```powershell
+.venv\Scripts\python.exe resumes\tools\check_resume_text.py $env:TEMP\wanted-resume.txt
+```
+
+It prints each problem with its line and the text that matched, and exits with 1 when it finds
+any; `-` in place of a file reads standard input. Besides the PDF fact rules, it fails:
+
+- G-Man shown as current: 재직 중, 현재, or Present beside its name, or a period that starts in
+  2025.03 or 2025.04 and has no end (it ended in 2026.07);
+- a name from the never-claim list in `profile/skills.md`, read from that file, in a skills list:
+  a skills section, or a `관련기술:` or `Tech stack:` line. Descriptions may still name features
+  built with them;
+- education other than one 공학사 (B.S.) from Woosong, 2020.09 - 2024.08: 대학원, 석사, or another
+  degree, other dates, a status other than 졸업, or the major written "Future Technologies" or
+  "AI and Big Data";
+- the old Recs title AI Developer;
+- an email address or phone number in the file.
+
+`--no-honors` skips the highest-honors check, as in the PDF checker.
+
+### Capturing a platform resume
+
+`capture_resume_text.js` copies the open resume as text. It changes nothing on the page, and it
+replaces email addresses and phone numbers with `[email]` and `[phone]`; never save a copy that
+still holds them.
+
+1. Open the resume in Chrome with the Claude in Chrome extension.
+   - Wanted: open `wanted.co.kr/cv/list` and click the resume's title, which opens its editor at
+     `wanted.co.kr/cv/<id>`. Do not type or click in the form.
+   - Saramin and JobKorea: open the resume's own view page. Not tested yet (see below).
+2. Run the whole of `capture_resume_text.js` with the extension's JavaScript tool. It answers with
+   a line such as `86 lines, 4245 characters, fingerprint 95da9bce, 5 chunks`.
+3. The tool cuts its output near 1,000 characters, so read `window.__resumeChunks[0]`, `[1]`, and
+   so on (one `browser_batch` call can read them all), and join the pieces with newlines.
+4. Save the text outside the repo, for example in `%TEMP%`, and run the check. It prints the
+   fingerprint of the file it read; if that differs from the capture's, the copy has a slip (a
+   wrong fact "corrected" while copying hides the very error the check looks for), so save the
+   chunks again. Delete the file when done.
+
+Why a script and not the page text: the Wanted editor keeps company names, titles, the school,
+the major, and descriptions in input fields, which page text leaves out. Its education level and
+degree are custom dropdowns: a chosen value is drawn in dark text, and an empty one shows a grey
+placeholder marked `data-placeholder="true"`. The script reads the fields, keeps only chosen
+values, drops faint placeholder text (an empty `YYYY.MM`) and unticked checkboxes with their
+labels, marks section titles with `## `, and joins items shown side by side into one line, such
+as `2025.04 - 재직 중 (1년 7개월)`. On Wanted it reads only the resume
+(`[class*="ResumeDetail_ResumeDetail__wrapper"]`), not the job suggestions beside it; elsewhere it
+reads `main` or the whole page. To read another part of a page, set
+`window.__resumeRoot = '<CSS selector>'` before running it.
+
+The script has been tried only on Wanted so far (2026-10-21). On the first capture from Saramin or
+JobKorea, check that the text holds the career, education, and skills entries and no menus or job
+suggestions, then note the page address, and a root selector if one was needed, in this section.
+
 
 ## `export_docx_to_pdf.ps1`
 
